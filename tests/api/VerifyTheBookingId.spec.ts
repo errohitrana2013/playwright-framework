@@ -35,7 +35,7 @@ test('Verify the booking id', async () => {
     const breakingPoint = 442; // set a breaking point to limit the number of iterations
     for (const booking of bookingData) {
       const id = booking.bookingid;
-      if (id ===breakingPoint) {
+      if (id >breakingPoint) {
         console.log(`Reached breaking point at booking ID: ${id}. Stopping further requests.`);
         break;
       }
@@ -95,6 +95,6 @@ test('Update booking using auth token', async () => {
   const updatedBooking = await updateResponse.json();
   console.log(updatedBooking);
 
-  expect(updatedBooking.firstname).toBe('James');
-  expect(updatedBooking.lastname).toBe('Brown');
+  expect.soft(updatedBooking.firstname).toBe('James');
+  expect.soft(updatedBooking.lastname).toBe('Brown');
 });
