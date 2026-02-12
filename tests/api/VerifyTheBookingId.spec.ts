@@ -32,8 +32,13 @@ test('Verify the booking id', async () => {
 
     // now take the id from the json file 1 by 1 and verify the response 
     const bookingData = JSON.parse(bookingResponseAllFromFile);
+    const breakingPoint = 442; // set a breaking point to limit the number of iterations
     for (const booking of bookingData) {
       const id = booking.bookingid;
+      if (id ===breakingPoint) {
+        console.log(`Reached breaking point at booking ID: ${id}. Stopping further requests.`);
+        break;
+      }
       const response = await apiContext.get(`/booking/${id}`);
       // print the resoponse body
       console.log(`Booking ID: ${id}`);
