@@ -66,7 +66,9 @@ test('Update booking using auth token', async () => {
   const authBody = await authResponse.json();
   const token = authBody.token;
 
-  console.log('Token:', token);
+  //mask the token value in the console log
+  const maskedToken = token.substring(0, 5) + '*'.repeat(token.length - 5);
+  console.log('Token:', maskedToken);
 
   // 2️⃣ Update booking using token (PUT)
   const bookingId = 52;
