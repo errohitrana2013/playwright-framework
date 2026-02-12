@@ -42,8 +42,8 @@ test('Verify the booking id', async () => {
     }
 });
 
-
-test.only('Update booking using auth token', async () => {
+// update the booking using auth token and verify the response
+test('Update booking using auth token', async () => {
   const apiContext = await request.newContext({
     baseURL: 'https://restful-booker.herokuapp.com'
   });
