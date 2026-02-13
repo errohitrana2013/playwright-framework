@@ -11,7 +11,7 @@ test('Veirfy the Post API',async ({request})  => {
     expect(response.status()).toBe(200);
 
     const posts = await response.json();
-    console.log(posts);
+    // console.log(posts);
     // Verify that the response contains an array of posts
     expect(Array.isArray(posts)).toBe(true);
     expect(posts.length).toBeGreaterThan(0);
@@ -34,7 +34,7 @@ test('Veirfy the Post API',async ({request})  => {
     expect(response.status()).toBe(200);
 
     const post = await response.json();
-    console.log(post);
+    // console.log(post);
     // Verify that the response contains the expected properties
     expect(post).toHaveProperty('userId');
     expect(post).toHaveProperty('id');
@@ -65,14 +65,14 @@ test('Verify that data created via one API request '+
     );
     expect(newPostResponse.status()).toBe(201); 
     const newPost = await newPostResponse.json();
-    console.log(newPost);
+    // console.log(newPost);
     
     const postIdResponse = await request.get(
         `${baseURL}/posts/${newPost.id}`
     );
     expect(postIdResponse.status()).toBe(200);
     const post = await postIdResponse.json();
-    console.log(post);
+    // console.log(post);
     // validate that the retrieved post matches the created post
     
     expect(post.title).toBe(title);
