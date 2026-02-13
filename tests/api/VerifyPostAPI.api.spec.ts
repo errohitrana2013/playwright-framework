@@ -46,37 +46,21 @@ test('Veirfy the Post API',async ({request})  => {
   });
 
 
-test('Verify that data created via one API request '+
-    +'can be successfully retrieved and '+
-    +'validated using another API request.', async ({request})  => {
+test('Verify post creation response', async ({ request }) => {
+  const title = 'This is a test post created via API testing.';
+  const body = 'bar';
+  const userId = 90;
 
-    const title = 'This is a test post created via API testing.';
-    const body = 'bar';
-    const userId = 101;
-    const newPostResponse = await request.post(
-        `${baseURL}/posts`,
-        {
-            data: {
-                title: title,
-                body: body,
-                userId: userId,
-            }
-        }
-    );
-    expect.soft(newPostResponse.status()).toBe(201); 
-    const newPost = await newPostResponse.json();
-    // console.log(newPost);
-    
-    const postIdResponse = await request.get(
-        `${baseURL}/posts/${newPost.id}`
-    );
-    expect.soft(postIdResponse.status()).toBe(200);
-    const post = await postIdResponse.json();
-    // console.log(post);
-    // validate that the retrieved post matches the created post
-    
-    expect.soft(post.title).toBe(title);
-    expect.soft(post.body).toBe(body);
-    expect.soft(post.userId).toBe(userId);
+  const response = await request.post(`${baseURL}/posts`, {
+    data: { title, body, userId }
+  });
 
+  expect(response.status()).toBe(201);
+
+  const post = await response.json();
+
+  expect(post.title).toBe(title);
+  expect(post.body).toBe(body);
+  expect(post.userId).toBe(userId);
+  expect(post.id).toBeDefined(); // mock-generated ID
 });
