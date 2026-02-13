@@ -46,7 +46,7 @@ test('Veirfy the Post API',async ({request})  => {
   });
 
 
-test.only('Verify that data created via one API request '+
+test('Verify that data created via one API request '+
     +'can be successfully retrieved and '+
     +'validated using another API request.', async ({request})  => {
 
