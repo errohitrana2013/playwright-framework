@@ -31,18 +31,18 @@ test('Veirfy the Post API',async ({request})  => {
     const response = await request.get(
         `${baseURL}/posts/1`
     );
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     const post = await response.json();
     // console.log(post);
     // Verify that the response contains the expected properties
-    expect(post).toHaveProperty('userId');
-    expect(post).toHaveProperty('id');
-    expect(post).toHaveProperty('title');
-    expect(post).toHaveProperty('body');
+    expect.soft(post).toHaveProperty('userId');
+    expect.soft(post).toHaveProperty('id');
+    expect.soft(post).toHaveProperty('title');
+    expect.soft(post).toHaveProperty('body');
 
     // Verify that the post ID is 1
-    expect(post.id).toBe(1);
+    expect.soft(post.id).toBe(1);
   });
 
 
@@ -63,20 +63,20 @@ test('Verify that data created via one API request '+
             }
         }
     );
-    expect(newPostResponse.status()).toBe(201); 
+    expect.soft(newPostResponse.status()).toBe(201); 
     const newPost = await newPostResponse.json();
     // console.log(newPost);
     
     const postIdResponse = await request.get(
         `${baseURL}/posts/${newPost.id}`
     );
-    expect(postIdResponse.status()).toBe(200);
+    expect.soft(postIdResponse.status()).toBe(200);
     const post = await postIdResponse.json();
     // console.log(post);
     // validate that the retrieved post matches the created post
     
-    expect(post.title).toBe(title);
-    expect(post.body).toBe(body);
-    expect(post.userId).toBe(userId);
+    expect.soft(post.title).toBe(title);
+    expect.soft(post.body).toBe(body);
+    expect.soft(post.userId).toBe(userId);
 
 });
